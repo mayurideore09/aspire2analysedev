@@ -43,17 +43,118 @@
     <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .accordion-content {
-            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-        }
-        .accordion-content.active {
-            max-height: 1200px;
-            opacity: 1;
-        }
-    </style>
+
+    /* =========================================
+       GLASSY 3D DARK THEME
+       ========================================= */
+
+    .glass-footer {
+        position: relative;
+        background:
+            linear-gradient(
+                135deg,
+                rgba(12, 35, 64, 0.82),
+                rgba(7, 22, 41, 0.72)
+            );
+
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.10),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+            0 -10px 40px rgba(7, 22, 41, 0.18);
+
+        overflow: hidden;
+    }
+
+
+    /* Soft glass light */
+    .glass-footer::before {
+        content: "";
+        position: absolute;
+        width: 450px;
+        height: 450px;
+        top: -250px;
+        left: -100px;
+
+        background: radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.12) 0%,
+            rgba(255, 255, 255, 0.04) 35%,
+            transparent 70%
+        );
+
+        pointer-events: none;
+    }
+
+
+    /* Teal glass glow */
+    .glass-footer::after {
+        content: "";
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        bottom: -220px;
+        right: 5%;
+
+        background: radial-gradient(
+            circle,
+            rgba(14, 124, 134, 0.20) 0%,
+            rgba(14, 124, 134, 0.06) 40%,
+            transparent 70%
+        );
+
+        pointer-events: none;
+    }
+
+
+    /* Keep footer content above glass effects */
+    .glass-footer > div {
+        position: relative;
+        z-index: 2;
+    }
+
+
+    /* Glass divider */
+    .glass-divider {
+        border-color: rgba(255, 255, 255, 0.12) !important;
+    }
+
+
+    /* Glassy buttons / elements */
+    .glass-element {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.10),
+            0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+
+    /* =========================================
+       YOUR EXISTING ACCORDION
+       ========================================= */
+
+    .accordion-content {
+        transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+    }
+
+    .accordion-content.active {
+        max-height: 1200px;
+        opacity: 1;
+    }
+
+</style>
 </head>
 <body class="bg-white text-slate-800 font-sans antialiased selection:bg-tealbrand-500 selection:text-white">
 
@@ -489,7 +590,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-navy-950 text-slate-400 border-t border-navy-900 py-12">
+    <footer class="glass-footer text-slate-400 border-t border-navy-900 py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                 <!-- Brand Info -->
@@ -497,7 +598,7 @@
     <img 
         src="test2.png"
         alt="Aspire2Analyse"
-        class="h-12 w-auto object-contain"
+        class="h-8 w-auto object-contain"
     >
 </div>
                     <p class="text-sm text-slate-400 max-w-sm">

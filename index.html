@@ -43,120 +43,325 @@
     <!-- FontAwesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-  /* =========================================
-   LIGHT NAVY LIQUID GLASS FOOTER
-   ========================================= */
+/* =========================================================
+   ASPIRE2ANALYSE — iOS 27 INSPIRED LIQUID GLASS
+   Web version: translucent controls, dark specular edges,
+   readable contrast, soft depth and responsive interaction.
+   ========================================================= */
+
+:root {
+    --glass-navy: #071629;
+    --glass-navy-2: #0c2340;
+    --glass-teal: #0e7c86;
+    --glass-white: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(255, 255, 255, 0.42);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ---------------------------------------------------------
+   iOS-STYLE GLASS HEADER
+   --------------------------------------------------------- */
+.glass-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(255, 255, 255, 0.68);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.62);
+    box-shadow:
+        0 8px 30px rgba(7, 22, 41, 0.08),
+        inset 0 -1px 0 rgba(7, 22, 41, 0.05);
+    backdrop-filter: blur(24px) saturate(165%);
+    -webkit-backdrop-filter: blur(24px) saturate(165%);
+}
+
+.glass-nav {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 9px 14px;
+    border-radius: 15px;
+    color: rgba(7, 22, 41, 0.88);
+    background: rgba(255, 255, 255, 0.34);
+    border: 1px solid rgba(255, 255, 255, 0.58);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.80),
+        inset 0 -1px 0 rgba(7, 22, 41, 0.05),
+        0 4px 14px rgba(7, 22, 41, 0.06);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-nav:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.58);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.90),
+        0 8px 20px rgba(7, 22, 41, 0.10);
+}
+
+/* ---------------------------------------------------------
+   iOS 27-INSPIRED GLASS BUTTONS
+   --------------------------------------------------------- */
+.glass-button {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 46px;
+    padding: 12px 22px;
+    border-radius: 16px;
+    color: #ffffff;
+    text-decoration: none;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.30) 0%,
+            rgba(255, 255, 255, 0.14) 45%,
+            rgba(7, 22, 41, 0.18) 100%
+        );
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.52),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.18),
+        0 8px 24px rgba(7, 22, 41, 0.18);
+    backdrop-filter: blur(22px) saturate(165%);
+    -webkit-backdrop-filter: blur(22px) saturate(165%);
+    transition:
+        transform 0.25s cubic-bezier(.2,.8,.2,1),
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Bright top reflection */
+.glass-button::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: -25%;
+    top: -95%;
+    width: 150%;
+    height: 135%;
+    background: linear-gradient(
+        115deg,
+        transparent 34%,
+        rgba(255, 255, 255, 0.34) 48%,
+        transparent 62%
+    );
+    transform: rotate(-8deg);
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+/* Dark lower edge = depth / separation */
+.glass-button::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 34%;
+    border-radius: inherit;
+    background: linear-gradient(to top, rgba(0,0,0,0.16), transparent);
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.glass-button:hover {
+    transform: translateY(-2px) scale(1.01);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.38),
+            rgba(14, 124, 134, 0.26)
+        );
+    border-color: rgba(255, 255, 255, 0.52);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.62),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.18),
+        0 13px 32px rgba(7, 22, 41, 0.25);
+}
+
+.glass-button:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow:
+        inset 0 2px 7px rgba(0, 0, 0, 0.20),
+        0 4px 12px rgba(7, 22, 41, 0.16);
+}
+
+.glass-button:focus-visible,
+.glass-nav:focus-visible {
+    outline: 3px solid rgba(14, 124, 134, 0.35);
+    outline-offset: 3px;
+}
+
+.glass-button-primary {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 55, 88, 0.86) 0%,
+            rgba(12, 35, 64, 0.80) 48%,
+            rgba(14, 124, 134, 0.72) 100%
+        );
+    border-color: rgba(255, 255, 255, 0.38);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.48),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.24),
+        0 9px 28px rgba(7, 22, 41, 0.25);
+}
+
+.glass-button-primary:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(25, 65, 102, 0.90),
+            rgba(14, 124, 134, 0.82)
+        );
+}
+
+/* ---------------------------------------------------------
+   MOBILE MENU GLASS
+   --------------------------------------------------------- */
+.glass-mobile-menu {
+    background: rgba(255, 255, 255, 0.78) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.70) !important;
+    box-shadow: 0 14px 35px rgba(7, 22, 41, 0.10);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+}
+
+.glass-mobile-link {
+    transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.glass-mobile-link:hover {
+    transform: translateX(2px);
+    background: rgba(255, 255, 255, 0.65) !important;
+}
+
+/* ---------------------------------------------------------
+   FOOTER — DEEP LIQUID GLASS
+   --------------------------------------------------------- */
 .glass-footer {
     position: relative;
     isolation: isolate;
     overflow: hidden;
-
-    /* LIGHT NAVY BLUE GLASS */
+    color: rgba(255, 255, 255, 0.82);
     background:
         linear-gradient(
             135deg,
-            rgba(72, 105, 140, 0.88),
-            rgba(48, 82, 119, 0.78) 45%,
-            rgba(35, 70, 105, 0.82)
+            rgba(35, 66, 96, 0.72) 0%,
+            rgba(12, 35, 64, 0.88) 48%,
+            rgba(7, 22, 41, 0.96) 100%
         );
-
-    /* LIQUID GLASS BLUR */
-    backdrop-filter: blur(30px) saturate(160%);
-    -webkit-backdrop-filter: blur(30px) saturate(160%);
-
-    /* GLASS EDGE */
-    border-top: 1px solid rgba(255, 255, 255, 0.35);
-
-    /* 3D DEPTH */
+    border-top: 1px solid rgba(255, 255, 255, 0.30);
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.30),
-        inset 0 -1px 0 rgba(255, 255, 255, 0.10),
-        0 -15px 45px rgba(10, 35, 65, 0.20);
+        inset 0 1px 0 rgba(255, 255, 255, 0.20),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.28),
+        0 -18px 45px rgba(7, 22, 41, 0.16);
+    backdrop-filter: blur(34px) saturate(155%);
+    -webkit-backdrop-filter: blur(34px) saturate(155%);
 }
-
-
-/* =========================================
-   GLASS LIGHT REFLECTION
-   ========================================= */
 
 .glass-footer::before {
     content: "";
     position: absolute;
-
-    width: 700px;
-    height: 300px;
-
-    top: -200px;
-    left: 5%;
-
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(255, 255, 255, 0.28) 0%,
-            rgba(255, 255, 255, 0.12) 30%,
-            transparent 70%
-        );
-
-    filter: blur(25px);
-
+    width: 900px;
+    height: 320px;
+    top: -235px;
+    left: -160px;
+    background: radial-gradient(
+        ellipse,
+        rgba(255, 255, 255, 0.34) 0%,
+        rgba(255, 255, 255, 0.13) 28%,
+        transparent 70%
+    );
+    filter: blur(28px);
     transform: rotate(-8deg);
-
     pointer-events: none;
     z-index: -1;
 }
-
-
-/* =========================================
-   SOFT TEAL LIQUID GLOW
-   ========================================= */
 
 .glass-footer::after {
     content: "";
     position: absolute;
-
-    width: 550px;
-    height: 550px;
-
-    right: -180px;
-    bottom: -380px;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(14, 124, 134, 0.32) 0%,
-            rgba(14, 124, 134, 0.15) 35%,
-            transparent 70%
-        );
-
-    filter: blur(40px);
-
+    width: 700px;
+    height: 700px;
+    right: -260px;
+    bottom: -500px;
+    background: radial-gradient(
+        circle,
+        rgba(14, 124, 134, 0.40) 0%,
+        rgba(14, 124, 134, 0.15) 35%,
+        transparent 70%
+    );
+    filter: blur(48px);
     pointer-events: none;
     z-index: -1;
 }
-
-
-/* =========================================
-   KEEP FOOTER CONTENT ABOVE GLASS
-   ========================================= */
 
 .glass-footer > div {
     position: relative;
     z-index: 2;
 }
 
+.glass-footer img {
+    height: 34px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 3px 7px rgba(0, 0, 0, 0.20));
+}
 
-/* =========================================
-   GLASS DIVIDER
-   ========================================= */
+.glass-footer a {
+    transition: color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+}
+
+.glass-footer a:hover {
+    color: #ffffff;
+    opacity: 1;
+    transform: translateX(2px);
+}
 
 .glass-divider {
     border-color: rgba(255, 255, 255, 0.18) !important;
 }
 
-/* =========================================
-   EXISTING ACCORDION
-   ========================================= */
+/* ---------------------------------------------------------
+   GLASS BACK-TO-TOP CONTROL
+   --------------------------------------------------------- */
+.glass-float-button {
+    position: relative;
+    overflow: hidden;
+    background: rgba(12, 35, 64, 0.68);
+    border: 1px solid rgba(255, 255, 255, 0.30);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.34),
+        0 10px 28px rgba(7, 22, 41, 0.22);
+    backdrop-filter: blur(22px) saturate(155%);
+    -webkit-backdrop-filter: blur(22px) saturate(155%);
+    transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
 
+.glass-float-button:hover {
+    transform: translateY(-2px);
+    background: rgba(14, 124, 134, 0.78);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.42),
+        0 13px 32px rgba(7, 22, 41, 0.28);
+}
+
+/* ---------------------------------------------------------
+   ACCORDION
+   --------------------------------------------------------- */
 .accordion-content {
     transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
     max-height: 0;
@@ -169,12 +374,77 @@
     opacity: 1;
 }
 
+/* ---------------------------------------------------------
+   BROWSER FALLBACK — keep the site readable without blur
+   --------------------------------------------------------- */
+@supports not ((backdrop-filter: blur(1px))) {
+    .glass-header {
+        background: rgba(255, 255, 255, 0.96);
+    }
+
+    .glass-button {
+        background: rgba(12, 35, 64, 0.92);
+    }
+
+    .glass-footer {
+        background: #0c2340;
+    }
+}
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+@media (max-width: 640px) {
+    .glass-header {
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(20px) saturate(150%);
+        -webkit-backdrop-filter: blur(20px) saturate(150%);
+    }
+
+    .glass-button {
+        width: 100%;
+        min-height: 48px;
+        border-radius: 15px;
+    }
+
+    .glass-footer {
+        background:
+            linear-gradient(
+                145deg,
+                rgba(30, 60, 90, 0.84),
+                rgba(7, 22, 41, 0.97)
+            );
+        backdrop-filter: blur(27px) saturate(145%);
+        -webkit-backdrop-filter: blur(27px) saturate(145%);
+    }
+
+    .glass-footer img {
+        height: 30px;
+    }
+}
+
+/* ---------------------------------------------------------
+   ACCESSIBILITY / REDUCED MOTION
+   --------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .glass-button,
+    .glass-nav,
+    .glass-footer a,
+    .glass-float-button,
+    .glass-mobile-link {
+        transition: none;
+    }
+}
 </style>
 </head>
 <body class="bg-white text-slate-800 font-sans antialiased selection:bg-tealbrand-500 selection:text-white">
 
     <!-- HEADER / NAVIGATION -->
-    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-200">
+    <header class="glass-header">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-24">
                 <!-- NEW LOGO -->
@@ -187,16 +457,16 @@
 </a>
                 <!-- Desktop Navigation Links -->
                 <nav class="hidden md:flex items-center space-x-8">
-                    <a href="#overview" class="text-sm font-semibold text-slate-700 hover:text-tealbrand-500 transition-colors">Overview</a>
-                    <a href="#program" class="text-sm font-semibold text-slate-700 hover:text-tealbrand-500 transition-colors">Training Program</a>
-                    <a href="#curriculum" class="text-sm font-semibold text-slate-700 hover:text-tealbrand-500 transition-colors">Curriculum</a>
-                    <a href="#Mentor" class="text-sm font-semibold text-slate-700 hover:text-tealbrand-500 transition-colors">Mentor</a>
-                    <a href="#contact" class="text-sm font-semibold text-slate-700 hover:text-tealbrand-500 transition-colors">Contact</a>
+                    <a href="#overview" class="glass-nav text-sm font-semibold">Overview</a>
+                    <a href="#program" class="glass-nav text-sm font-semibold">Training Program</a>
+                    <a href="#curriculum" class="glass-nav text-sm font-semibold">Curriculum</a>
+                    <a href="#Mentor" class="glass-nav text-sm font-semibold">Mentor</a>
+                    <a href="#contact" class="glass-button glass-button-primary">Contact</a>
                 </nav>
 
                 <!-- Action Button -->
                 <div class="hidden md:flex items-center gap-4">
-                    <a href="#contact" class="px-5 py-2.5 rounded-lg bg-navy-900 hover:bg-tealbrand-500 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                    <a href="#contact" class="glass-button glass-button-primary text-sm font-semibold">
                         Enquire Now
                     </a>
                 </div>
@@ -211,13 +481,13 @@
         </div>
 
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
-            <a href="#overview" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-tealbrand-500">Overview</a>
-            <a href="#program" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-tealbrand-500">Training Program</a>
-            <a href="#curriculum" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-tealbrand-500">Curriculum</a>
-            <a href="#Mentor" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-tealbrand-500">Mentor</a>
-            <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-tealbrand-500">Contact</a>
-            <a href="#contact" class="mobile-nav-link block w-full text-center px-4 py-3 rounded-lg bg-navy-900 text-white font-semibold shadow-md">Enquire Now</a>
+        <div id="mobile-menu" class="glass-mobile-menu hidden md:hidden px-4 pt-3 pb-6 space-y-3">
+            <a href="#overview" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">Overview</a>
+            <a href="#program" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">Training Program</a>
+            <a href="#curriculum" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">Curriculum</a>
+            <a href="#Mentor" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">Mentor</a>
+            <a href="#contact" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">Contact</a>
+            <a href="#contact" class="mobile-nav-link glass-button glass-button-primary w-full text-center font-semibold">Enquire Now</a>
         </div>
     </header>
 
@@ -270,10 +540,10 @@
                     </div>
 
                     <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                        <a href="#program" class="px-7 py-3.5 rounded-xl bg-navy-900 hover:bg-tealbrand-500 text-white font-bold text-base shadow-lg transition-all text-center">
+                        <a href="#program" class="glass-button glass-button-primary font-bold text-base text-center">
                             Explore Curriculum
                         </a>
-                        <a href="#contact" class="px-7 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-navy-900 border border-slate-300 font-semibold text-base transition-all text-center shadow-sm">
+                        <a href="#contact" class="glass-button text-navy-900 font-semibold text-base text-center">
                             Request Syllabus
                         </a>
                     </div>
@@ -410,10 +680,10 @@
                         </div>
 
                         <div class="flex items-center gap-4 pt-4 border-t border-slate-100">
-                            <button onclick="openProgramModal()" class="px-6 py-3 bg-navy-900 hover:bg-tealbrand-500 text-white font-bold text-sm rounded-lg shadow-md transition-all flex items-center gap-2">
+                            <button onclick="openProgramModal()" class="glass-button glass-button-primary font-bold text-sm">
                                 <i class="fa-solid fa-folder-open"></i> View Complete Program Details
                             </button>
-                            <a href="#contact" class="px-5 py-3 border border-slate-300 hover:border-slate-400 text-slate-700 font-semibold text-sm rounded-lg transition-all">
+                            <a href="#contact" class="glass-button text-navy-900 font-semibold text-sm">
                                 Enquire Now
                             </a>
                         </div>
@@ -592,7 +862,7 @@
                     </div>
 
                     <div class="text-center">
-                        <button type="submit" class="w-full sm:w-auto px-10 py-3.5 bg-navy-900 hover:bg-tealbrand-500 text-white font-bold text-base rounded-xl shadow-lg transition-all">
+                        <button type="submit" class="glass-button glass-button-primary w-full sm:w-auto font-bold text-base">
                             Submit Enquiry
                         </button>
                     </div>
@@ -605,7 +875,6 @@
     </section>
 
     <!-- FOOTER -->
-   <!-- FOOTER -->
 <footer class="glass-footer text-white/80 py-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -699,7 +968,7 @@
 
 
         <!-- DIVIDER -->
-        <div class="border-t border-white/20 pt-6 text-center">
+        <div class="glass-divider border-t pt-6 text-center">
 
             <p class="text-xs text-white/60">
                 &copy; Aspire2Analyse. All rights reserved.
@@ -802,10 +1071,10 @@
 
             <!-- Modal Footer -->
             <div class="p-4 bg-slate-50 border-t border-slate-200 flex justify-end gap-3">
-                <button onclick="closeProgramModal()" class="px-5 py-2.5 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-700 font-semibold text-sm">
+                <button onclick="closeProgramModal()" class="glass-button text-navy-900 font-semibold text-sm">
                     Close
                 </button>
-                <a href="#contact" onclick="closeProgramModal()" class="px-6 py-2.5 rounded-lg bg-navy-900 hover:bg-tealbrand-500 text-white font-bold text-sm shadow">
+                <a href="#contact" onclick="closeProgramModal()" class="glass-button glass-button-primary font-bold text-sm">
                     Enquire Now
                 </a>
             </div>
@@ -813,7 +1082,7 @@
     </div>
 
     <!-- BACK TO TOP BUTTON -->
-    <button id="back-to-top" onclick="scrollToTop()" class="fixed bottom-6 right-6 z-30 w-12 h-12 rounded-full bg-navy-900 text-white flex items-center justify-center shadow-lg hover:bg-tealbrand-500 transition-all opacity-0 pointer-events-none" aria-label="Back to top">
+    <button id="back-to-top" onclick="scrollToTop()" class="glass-float-button fixed bottom-6 right-6 z-30 w-12 h-12 rounded-full text-white flex items-center justify-center opacity-0 pointer-events-none" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
 

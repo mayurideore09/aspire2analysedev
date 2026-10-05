@@ -439,6 +439,299 @@ html {
         transition: none;
     }
 }
+
+/* =========================================================
+   TESTIMONIALS — LIQUID GLASS SLIDER
+   ========================================================= */
+.glass-section {
+    position: relative;
+    overflow: hidden;
+}
+.glass-section::before {
+    content: "";
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    left: -260px;
+    top: 10%;
+    background: radial-gradient(circle, rgba(14,124,134,0.10), transparent 68%);
+    filter: blur(25px);
+    pointer-events: none;
+}
+.glass-review-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 300px;
+    border: 1px solid rgba(255,255,255,0.65);
+    border-radius: 28px;
+    background:
+        linear-gradient(135deg,
+            rgba(255,255,255,0.78),
+            rgba(240,244,248,0.55));
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.92),
+        0 20px 55px rgba(7,22,41,0.10);
+    backdrop-filter: blur(28px) saturate(150%);
+    -webkit-backdrop-filter: blur(28px) saturate(150%);
+}
+.glass-review-card::before {
+    content: "";
+    position: absolute;
+    width: 380px;
+    height: 180px;
+    top: -100px;
+    left: -80px;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.70), transparent 70%);
+    filter: blur(22px);
+    pointer-events: none;
+    z-index: -1;
+}
+.review-track {
+    display: flex;
+    transition: transform 0.65s cubic-bezier(.2,.8,.2,1);
+    will-change: transform;
+}
+.review-slide {
+    min-width: 100%;
+    padding: 2px;
+}
+.review-stars {
+    letter-spacing: 0.18em;
+}
+.review-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #ffffff;
+    background: linear-gradient(135deg, #0c2340, #0e7c86);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.38),
+        0 7px 18px rgba(7,22,41,0.18);
+}
+.review-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: #cbd5e1;
+    transition: all 0.25s ease;
+}
+.review-dot.active {
+    width: 26px;
+    background: #0e7c86;
+}
+
+/* =========================================================
+   TRACK RECORD — ANIMATED COUNTERS
+   ========================================================= */
+.track-record-shell {
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    background:
+        linear-gradient(135deg,
+            rgba(7,22,41,0.97),
+            rgba(12,35,64,0.93) 55%,
+            rgba(14,124,134,0.84));
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.22),
+        0 24px 60px rgba(7,22,41,0.18);
+}
+.track-record-shell::before {
+    content: "";
+    position: absolute;
+    width: 650px;
+    height: 250px;
+    top: -180px;
+    left: -100px;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.20), transparent 68%);
+    filter: blur(28px);
+    pointer-events: none;
+}
+.track-number {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.04em;
+}
+.track-card {
+    border-radius: 22px;
+    background: rgba(255,255,255,0.075);
+    border: 1px solid rgba(255,255,255,0.13);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.10),
+        0 10px 25px rgba(0,0,0,0.10);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+/* =========================================================
+   FAQ — GLASS ACCORDION
+   ========================================================= */
+.faq-item {
+    overflow: hidden;
+    border: 1px solid rgba(148,163,184,0.28);
+    border-radius: 20px;
+    background: rgba(255,255,255,0.66);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.85),
+        0 8px 24px rgba(7,22,41,0.05);
+    backdrop-filter: blur(18px) saturate(145%);
+    -webkit-backdrop-filter: blur(18px) saturate(145%);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+.faq-item:hover {
+    border-color: rgba(14,124,134,0.30);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.90),
+        0 12px 30px rgba(7,22,41,0.08);
+}
+.faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 20px 22px;
+    text-align: left;
+}
+.faq-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #0e7c86;
+    background: rgba(14,124,134,0.10);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+.faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+}
+.faq-answer-inner {
+    overflow: hidden;
+}
+.faq-item.active .faq-answer {
+    grid-template-rows: 1fr;
+}
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+    background: rgba(14,124,134,0.16);
+}
+.faq-item.active {
+    border-color: rgba(14,124,134,0.28);
+}
+
+/* =========================================================
+   BROCHURE + WHATSAPP
+   ========================================================= */
+.glass-brochure-button {
+    cursor: pointer;
+}
+.whatsapp-float {
+    position: fixed;
+    right: 24px;
+    bottom: 88px;
+    z-index: 45;
+    width: 58px;
+    height: 58px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background: rgba(14,124,134,0.88);
+    border: 1px solid rgba(255,255,255,0.42);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.40),
+        0 14px 32px rgba(7,22,41,0.24);
+    backdrop-filter: blur(18px) saturate(155%);
+    -webkit-backdrop-filter: blur(18px) saturate(155%);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    animation: whatsappPulse 2.8s ease-in-out infinite;
+}
+.whatsapp-float:hover {
+    transform: translateY(-4px) scale(1.04);
+    background: rgba(7,82,89,0.96);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.48),
+        0 18px 38px rgba(7,22,41,0.30);
+}
+.whatsapp-float i {
+    font-size: 28px;
+}
+.whatsapp-tooltip {
+    position: absolute;
+    right: 70px;
+    white-space: nowrap;
+    padding: 9px 13px;
+    border-radius: 12px;
+    color: #ffffff;
+    background: rgba(7,22,41,0.90);
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 0;
+    transform: translateX(8px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.whatsapp-float:hover .whatsapp-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+}
+@keyframes whatsappPulse {
+    0%, 100% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.40), 0 14px 32px rgba(7,22,41,0.24); }
+    50% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.40), 0 14px 32px rgba(14,124,134,0.32), 0 0 0 8px rgba(14,124,134,0.08); }
+}
+
+/* =========================================================
+   BROCHURE MODAL
+   ========================================================= */
+.brochure-modal {
+    background: rgba(7,22,41,0.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .glass-review-card {
+        min-height: 360px;
+        border-radius: 24px;
+    }
+    .track-record-shell {
+        border-radius: 24px;
+    }
+    .whatsapp-float {
+        right: 16px;
+        bottom: 78px;
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+    }
+    .whatsapp-tooltip {
+        display: none;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .review-track,
+    .review-dot,
+    .faq-icon,
+    .faq-answer,
+    .faq-item,
+    .whatsapp-float {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
 </style>
 </head>
 <body class="bg-white text-slate-800 font-sans antialiased selection:bg-tealbrand-500 selection:text-white">
@@ -461,11 +754,17 @@ html {
                     <a href="#program" class="glass-nav text-sm font-semibold">Training Program</a>
                     <a href="#curriculum" class="glass-nav text-sm font-semibold">Curriculum</a>
                     <a href="#Mentor" class="glass-nav text-sm font-semibold">Mentor</a>
+                    <a href="#testimonials" class="glass-nav text-sm font-semibold">Reviews</a>
+                    <a href="#faq" class="glass-nav text-sm font-semibold">FAQs</a>
                     <a href="#contact" class="glass-nav text-sm font-semibold">Contact</a>
                 </nav>
 
                 <!-- Action Button -->
-                <div class="hidden md:flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-3">
+                    <button type="button" onclick="downloadBrochure()" class="glass-button text-navy-900 font-semibold glass-brochure-button">
+                        <i class="fa-solid fa-download"></i>
+                        Brochure
+                    </button>
                     <a href="#contact" class="glass-button glass-button-primary">
                         Enquire Now
                     </a>
@@ -486,7 +785,12 @@ html {
             <a href="#program" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">Training Program</a>
             <a href="#curriculum" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">Curriculum</a>
             <a href="#Mentor" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">Mentor</a>
+            <a href="#testimonials" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">Reviews</a>
+            <a href="#faq" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">FAQs</a>
             <a href="#contact" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">Contact</a>
+            <button type="button" onclick="downloadBrochure(); mobileMenu.classList.add('hidden');" class="glass-button text-navy-900 font-semibold w-full">
+                <i class="fa-solid fa-download"></i> Download Brochure
+            </button>
             <a href="#contact" class="mobile-nav-link glass-button glass-button-primary w-full text-center font-semibold">Enquire Now</a>
         </div>
     </header>
@@ -546,6 +850,9 @@ html {
                         <a href="#contact" class="glass-button text-navy-900 font-semibold text-base text-center">
                             Request Syllabus
                         </a>
+                        <button type="button" onclick="downloadBrochure()" class="glass-button text-navy-900 font-semibold text-base text-center glass-brochure-button">
+                            <i class="fa-solid fa-download"></i> Download Brochure
+                        </button>
                     </div>
                 </div>
 
@@ -821,6 +1128,322 @@ html {
         </div>
     </section>
 
+
+    <!-- =========================================================
+         TESTIMONIALS / SLIDING REVIEWS
+         ========================================================= -->
+    <section id="testimonials" class="glass-section py-16 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-xs font-bold tracking-widest text-tealbrand-500 uppercase">Learner Voices</span>
+                <h2 class="text-3xl font-extrabold text-navy-900 mt-2">What Our Learners Say</h2>
+                <p class="text-slate-600 mt-2 text-sm">
+                    Sample reviews are included for now. Replace these with your verified learner testimonials before publishing.
+                </p>
+            </div>
+
+            <div class="glass-review-card">
+                <div id="review-track" class="review-track h-full">
+
+                    <article class="review-slide">
+                        <div class="p-7 sm:p-10 h-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between gap-4 mb-7">
+                                    <div class="flex items-center gap-4">
+                                        <div class="review-avatar">AS</div>
+                                        <div>
+                                            <h3 class="font-bold text-navy-900">Aditi Sharma</h3>
+                                            <p class="text-xs text-slate-500 font-medium">Business Analyst Aspirant</p>
+                                        </div>
+                                    </div>
+                                    <div class="review-stars text-gold-500 text-sm" aria-label="5 out of 5 stars">
+                                        ★★★★★
+                                    </div>
+                                </div>
+                                <div class="text-4xl text-tealbrand-500/20 font-serif leading-none mb-2">“</div>
+                                <p class="text-lg sm:text-xl text-slate-700 leading-relaxed font-medium">
+                                    The practical approach made Business Analysis much easier to understand. I especially liked the BRD, user story and process-mapping exercises.
+                                </p>
+                            </div>
+                            <div class="mt-8 pt-5 border-t border-slate-200/70 text-xs text-slate-500">
+                                Sample testimonial — replace with a verified learner review.
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="review-slide">
+                        <div class="p-7 sm:p-10 h-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between gap-4 mb-7">
+                                    <div class="flex items-center gap-4">
+                                        <div class="review-avatar">RM</div>
+                                        <div>
+                                            <h3 class="font-bold text-navy-900">Rahul Mehta</h3>
+                                            <p class="text-xs text-slate-500 font-medium">Working Professional</p>
+                                        </div>
+                                    </div>
+                                    <div class="review-stars text-gold-500 text-sm" aria-label="5 out of 5 stars">
+                                        ★★★★★
+                                    </div>
+                                </div>
+                                <div class="text-4xl text-tealbrand-500/20 font-serif leading-none mb-2">“</div>
+                                <p class="text-lg sm:text-xl text-slate-700 leading-relaxed font-medium">
+                                    I wanted a structured path from requirements to Agile delivery. The hands-on curriculum gives a clear sequence to practise real BA activities.
+                                </p>
+                            </div>
+                            <div class="mt-8 pt-5 border-t border-slate-200/70 text-xs text-slate-500">
+                                Sample testimonial — replace with a verified learner review.
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="review-slide">
+                        <div class="p-7 sm:p-10 h-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between gap-4 mb-7">
+                                    <div class="flex items-center gap-4">
+                                        <div class="review-avatar">NK</div>
+                                        <div>
+                                            <h3 class="font-bold text-navy-900">Neha Kulkarni</h3>
+                                            <p class="text-xs text-slate-500 font-medium">QA Professional → BA</p>
+                                        </div>
+                                    </div>
+                                    <div class="review-stars text-gold-500 text-sm" aria-label="5 out of 5 stars">
+                                        ★★★★★
+                                    </div>
+                                </div>
+                                <div class="text-4xl text-tealbrand-500/20 font-serif leading-none mb-2">“</div>
+                                <p class="text-lg sm:text-xl text-slate-700 leading-relaxed font-medium">
+                                    The combination of documentation, SQL, API basics, Jira and UAT makes the program feel much closer to an actual project environment.
+                                </p>
+                            </div>
+                            <div class="mt-8 pt-5 border-t border-slate-200/70 text-xs text-slate-500">
+                                Sample testimonial — replace with a verified learner review.
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="review-slide">
+                        <div class="p-7 sm:p-10 h-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between gap-4 mb-7">
+                                    <div class="flex items-center gap-4">
+                                        <div class="review-avatar">AD</div>
+                                        <div>
+                                            <h3 class="font-bold text-navy-900">Arjun Desai</h3>
+                                            <p class="text-xs text-slate-500 font-medium">Aspiring Business Analyst</p>
+                                        </div>
+                                    </div>
+                                    <div class="review-stars text-gold-500 text-sm" aria-label="5 out of 5 stars">
+                                        ★★★★★
+                                    </div>
+                                </div>
+                                <div class="text-4xl text-tealbrand-500/20 font-serif leading-none mb-2">“</div>
+                                <p class="text-lg sm:text-xl text-slate-700 leading-relaxed font-medium">
+                                    The capstone structure is exactly what I was looking for. It gives me a practical way to demonstrate BA skills instead of only listing course certificates.
+                                </p>
+                            </div>
+                            <div class="mt-8 pt-5 border-t border-slate-200/70 text-xs text-slate-500">
+                                Sample testimonial — replace with a verified learner review.
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="review-slide">
+                        <div class="p-7 sm:p-10 h-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between gap-4 mb-7">
+                                    <div class="flex items-center gap-4">
+                                        <div class="review-avatar">PN</div>
+                                        <div>
+                                            <h3 class="font-bold text-navy-900">Priya Nair</h3>
+                                            <p class="text-xs text-slate-500 font-medium">Operations Professional</p>
+                                        </div>
+                                    </div>
+                                    <div class="review-stars text-gold-500 text-sm" aria-label="5 out of 5 stars">
+                                        ★★★★★
+                                    </div>
+                                </div>
+                                <div class="text-4xl text-tealbrand-500/20 font-serif leading-none mb-2">“</div>
+                                <p class="text-lg sm:text-xl text-slate-700 leading-relaxed font-medium">
+                                    I like that the learning is broken into manageable modules. The practical labs make it easier to connect theory with what a BA actually does at work.
+                                </p>
+                            </div>
+                            <div class="mt-8 pt-5 border-t border-slate-200/70 text-xs text-slate-500">
+                                Sample testimonial — replace with a verified learner review.
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="px-7 sm:px-10 pb-7 flex items-center justify-between gap-4">
+                    <button type="button" onclick="changeReview(-1)" class="glass-button !min-h-10 !w-10 !p-0 text-navy-900" aria-label="Previous review">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <div id="review-dots" class="flex items-center gap-2" aria-label="Review slides"></div>
+
+                    <button type="button" onclick="changeReview(1)" class="glass-button !min-h-10 !w-10 !p-0 text-navy-900" aria-label="Next review">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         TRACK RECORD
+         ========================================================= -->
+    <section id="track-record" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="track-record-shell p-6 sm:p-10">
+                <div class="relative z-10 text-center mb-9">
+                    <span class="text-xs font-bold tracking-widest text-tealbrand-100 uppercase">Track Record</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-2">Numbers That Tell the Story</h2>
+                    <p class="text-sm text-slate-300 mt-2 max-w-2xl mx-auto">
+                        Demo figures for now. Replace them with your verified Aspire2Analyse numbers when ready.
+                    </p>
+                </div>
+
+                <div class="relative z-10 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+                    <div class="track-card p-5 sm:p-6 text-center text-white">
+                        <div class="text-3xl sm:text-4xl font-extrabold track-number">
+                            <span class="counter" data-target="250" data-suffix="+">0</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-2">Learners Trained</p>
+                    </div>
+
+                    <div class="track-card p-5 sm:p-6 text-center text-white">
+                        <div class="text-3xl sm:text-4xl font-extrabold track-number">
+                            <span class="counter" data-target="80" data-suffix="+">0</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-2">Practical Projects</p>
+                    </div>
+
+                    <div class="track-card p-5 sm:p-6 text-center text-white">
+                        <div class="text-3xl sm:text-4xl font-extrabold track-number">
+                            <span class="counter" data-target="92" data-suffix="%">0</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-2">Completion Rate</p>
+                    </div>
+
+                    <div class="track-card p-5 sm:p-6 text-center text-white">
+                        <div class="text-3xl sm:text-4xl font-extrabold track-number">
+                            <span class="counter" data-target="4.9" data-decimals="1" data-suffix="/5">0</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-2">Learner Rating</p>
+                    </div>
+                </div>
+
+                <div class="relative z-10 mt-7 text-center text-[11px] text-slate-400">
+                    Demo track record — update these figures with verified results before publishing.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         FAQ
+         ========================================================= -->
+    <section id="faq" class="py-16 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-xs font-bold tracking-widest text-tealbrand-500 uppercase">Need To Know</span>
+                <h2 class="text-3xl font-extrabold text-navy-900 mt-2">Frequently Asked Questions</h2>
+                <p class="text-slate-600 mt-2 text-sm">Quick answers about the Aspire2Analyse practical training program.</p>
+            </div>
+
+            <div id="faq-container" class="space-y-3">
+
+                <div class="faq-item">
+                    <button type="button" class="faq-question" onclick="toggleFaq(this)">
+                        <span class="font-bold text-navy-900 text-sm sm:text-base">Who is this Business Analyst program for?</span>
+                        <span class="faq-icon"><i class="fa-solid fa-plus text-xs"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner px-5 pb-5">
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                It is designed for aspiring Business Analysts, fresh graduates, operations professionals, QA or development professionals moving toward functional roles, and professionals transitioning into Business Analysis.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-question" onclick="toggleFaq(this)">
+                        <span class="font-bold text-navy-900 text-sm sm:text-base">How practical is the training?</span>
+                        <span class="faq-icon"><i class="fa-solid fa-plus text-xs"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner px-5 pb-5">
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                The current program is designed around a 90% practical and 10% theory approach, with documentation, elicitation, Agile, Jira, process mapping, SQL, API basics, UAT and a capstone project.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-question" onclick="toggleFaq(this)">
+                        <span class="font-bold text-navy-900 text-sm sm:text-base">Will I create real Business Analyst artefacts?</span>
+                        <span class="faq-icon"><i class="fa-solid fa-plus text-xs"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner px-5 pb-5">
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Yes. The curriculum includes BRDs, FRDs, use cases, user stories, acceptance criteria, process maps, stakeholder artefacts, UAT test cases and an end-to-end capstone.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-question" onclick="toggleFaq(this)">
+                        <span class="font-bold text-navy-900 text-sm sm:text-base">Which tools and technologies are covered?</span>
+                        <span class="faq-icon"><i class="fa-solid fa-plus text-xs"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner px-5 pb-5">
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                The current curriculum covers Jira and Agile Scrum, SQL, API and integration fundamentals, process mapping, documentation and UAT. Figma and an MS Visio equivalent are also referenced in the program.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-question" onclick="toggleFaq(this)">
+                        <span class="font-bold text-navy-900 text-sm sm:text-base">How long is the current program?</span>
+                        <span class="faq-icon"><i class="fa-solid fa-plus text-xs"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner px-5 pb-5">
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                The current Aspire2Analyse page describes a comprehensive 40-hour practical training program with a six-week learning roadmap.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button type="button" class="faq-question" onclick="toggleFaq(this)">
+                        <span class="font-bold text-navy-900 text-sm sm:text-base">Can I speak to someone before enrolling?</span>
+                        <span class="faq-icon"><i class="fa-solid fa-plus text-xs"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner px-5 pb-5">
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Yes. Use the enquiry form on this page or the floating WhatsApp button to start a conversation and ask about the program.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- CONTACT / ENQUIRY SECTION -->
     <section id="contact" class="py-16 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -954,12 +1577,32 @@ html {
                     </li>
 
                     <li>
+                        <a href="#testimonials" class="text-white/75 hover:text-white transition-colors">
+                            Reviews
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#track-record" class="text-white/75 hover:text-white transition-colors">
+                            Track Record
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#faq" class="text-white/75 hover:text-white transition-colors">
+                            FAQs
+                        </a>
+                    </li>
+                    <li>
                         <a 
                             href="#contact" 
                             class="text-white/75 hover:text-white transition-colors"
                         >
                             Contact Us
                         </a>
+                    </li>
+                    <li>
+                        <button type="button" onclick="downloadBrochure()" class="text-white/75 hover:text-white transition-colors text-left">
+                            Download Brochure
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -979,6 +1622,22 @@ html {
 
     </div>
 </footer>
+
+
+    <!-- =========================================================
+         FLOATING WHATSAPP BUTTON
+         Opens WhatsApp chat with 9840081728
+         ========================================================= -->
+    <a
+        href="https://wa.me/919840081728?text=Hi%20Aspire2Analyse%2C%20I%20would%20like%20to%20know%20more%20about%20the%20Business%20Analyst%20Practical%20Training%20Program."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="whatsapp-float"
+        aria-label="Chat with Aspire2Analyse on WhatsApp"
+    >
+        <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
     <!-- PROGRAM DETAILS MODAL -->
     <div id="program-modal" class="fixed inset-0 z-50 hidden bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
@@ -1322,6 +1981,211 @@ html {
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // =========================================================
+        // TESTIMONIAL SLIDER
+        // =========================================================
+        const reviewTrack = document.getElementById('review-track');
+        const reviewSlides = document.querySelectorAll('.review-slide');
+        const reviewDotsContainer = document.getElementById('review-dots');
+        let currentReview = 0;
+        let reviewTimer;
+
+        function renderReviewDots() {
+            if (!reviewDotsContainer) return;
+            reviewDotsContainer.innerHTML = Array.from(reviewSlides).map((_, index) =>
+                `<button type="button" class="review-dot ${index === 0 ? 'active' : ''}" onclick="goToReview(${index})" aria-label="Go to review ${index + 1}"></button>`
+            ).join('');
+        }
+
+        function goToReview(index) {
+            if (!reviewTrack || !reviewSlides.length) return;
+            currentReview = (index + reviewSlides.length) % reviewSlides.length;
+            reviewTrack.style.transform = `translateX(-${currentReview * 100}%)`;
+
+            document.querySelectorAll('.review-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentReview);
+            });
+        }
+
+        function changeReview(direction) {
+            goToReview(currentReview + direction);
+            restartReviewTimer();
+        }
+
+        function startReviewTimer() {
+            reviewTimer = setInterval(() => {
+                goToReview(currentReview + 1);
+            }, 6000);
+        }
+
+        function restartReviewTimer() {
+            clearInterval(reviewTimer);
+            startReviewTimer();
+        }
+
+        renderReviewDots();
+        startReviewTimer();
+
+        // =========================================================
+        // TRACK RECORD COUNTERS
+        // Numbers animate only when the section enters the viewport.
+        // =========================================================
+        let countersAnimated = false;
+
+        function animateCounter(element) {
+            const target = parseFloat(element.dataset.target || '0');
+            const decimals = parseInt(element.dataset.decimals || '0', 10);
+            const suffix = element.dataset.suffix || '';
+            const duration = 1800;
+            const startTime = performance.now();
+
+            function updateCounter(now) {
+                const progress = Math.min((now - startTime) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 4);
+                const value = target * eased;
+
+                element.textContent = value.toFixed(decimals) + suffix;
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target.toFixed(decimals) + suffix;
+                }
+            }
+
+            requestAnimationFrame(updateCounter);
+        }
+
+        const trackRecordSection = document.getElementById('track-record');
+
+        if (trackRecordSection && 'IntersectionObserver' in window) {
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !countersAnimated) {
+                        countersAnimated = true;
+                        document.querySelectorAll('.counter').forEach(animateCounter);
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.25 });
+
+            counterObserver.observe(trackRecordSection);
+        } else {
+            document.querySelectorAll('.counter').forEach(animateCounter);
+        }
+
+        // =========================================================
+        // FAQ ACCORDION
+        // =========================================================
+        function toggleFaq(button) {
+            const item = button.closest('.faq-item');
+            if (!item) return;
+
+            const wasActive = item.classList.contains('active');
+
+            document.querySelectorAll('.faq-item').forEach(faq => {
+                faq.classList.remove('active');
+                const icon = faq.querySelector('.faq-icon i');
+                if (icon) icon.className = 'fa-solid fa-plus text-xs';
+            });
+
+            if (!wasActive) {
+                item.classList.add('active');
+                const icon = item.querySelector('.faq-icon i');
+                if (icon) icon.className = 'fa-solid fa-plus text-xs';
+            }
+        }
+
+        // =========================================================
+        // DUMMY BROCHURE DOWNLOAD
+        // Creates a standalone HTML brochure in the browser so
+        // no external brochure file is required.
+        // =========================================================
+        function downloadBrochure() {
+            const brochure = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Aspire2Analyse | Business Analyst Practical Training</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f0f4f8;color:#071629}
+.page{max-width:850px;margin:40px auto;background:white;padding:55px;border-radius:24px;box-shadow:0 20px 60px rgba(7,22,41,.14)}
+h1{font-size:38px;margin:0 0 10px;color:#0c2340}
+h2{color:#0e7c86;margin-top:35px}
+.badge{display:inline-block;background:#ccede9;color:#075259;padding:8px 14px;border-radius:999px;font-weight:700;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:25px 0}
+.card{padding:18px;border-radius:16px;background:#f0f4f8;border:1px solid #d9e2ec}
+.footer{margin-top:40px;padding-top:20px;border-top:1px solid #d9e2ec;color:#64748b;font-size:12px}
+li{margin:9px 0}
+@media(max-width:650px){.page{margin:0;padding:28px;border-radius:0}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="page">
+<span class="badge">ASPIRE2ANALYSE</span>
+<h1>Business Analyst Practical Training Program</h1>
+<p><strong>40 Hours • Practical • Case-Study Driven</strong></p>
+<p>Build job-ready Business Analysis skills through practical documentation, Agile delivery, stakeholder management, SQL, API fundamentals, UAT and an end-to-end capstone project.</p>
+
+<h2>What You Will Learn</h2>
+<div class="grid">
+<div class="card"><strong>Requirements</strong><br>BRD, FRD, Use Cases, User Stories & Acceptance Criteria</div>
+<div class="card"><strong>Agile & Jira</strong><br>Scrum ceremonies, backlog, sprint execution & Jira workflows</div>
+<div class="card"><strong>Data & SQL</strong><br>Queries, data validation, mapping & business analysis</div>
+<div class="card"><strong>Process Analysis</strong><br>AS-IS, TO-BE, SIPOC, Swimlanes & RCA</div>
+<div class="card"><strong>API Basics</strong><br>REST, JSON, status codes & integration flows</div>
+<div class="card"><strong>UAT & Capstone</strong><br>Testing, defect triage & end-to-end project delivery</div>
+</div>
+
+<h2>Program Highlights</h2>
+<ul>
+<li>90% Practical / 10% Theory approach</li>
+<li>40-hour comprehensive training program</li>
+<li>Six-week learning roadmap</li>
+<li>Real-world artefacts and case-study driven exercises</li>
+<li>Mock interviews and capstone evaluation</li>
+</ul>
+
+<h2>Who Is It For?</h2>
+<p>Aspiring Business Analysts, fresh graduates, operations professionals, QA/development professionals moving toward functional roles, and professionals transitioning into Business Analysis.</p>
+
+<h2>Curriculum Snapshot</h2>
+<ol>
+<li>IT & Project Foundations</li>
+<li>Business Analysis Foundations</li>
+<li>Requirements Elicitation</li>
+<li>Documentation — BRD, FRD & Use Cases</li>
+<li>User Stories & Acceptance Criteria</li>
+<li>Process Mapping & Analysis</li>
+<li>Agile & Scrum Execution</li>
+<li>Stakeholder Management</li>
+<li>Data & SQL for BA</li>
+<li>API & Integration</li>
+<li>UAT & Delivery Support</li>
+<li>Capstone Project</li>
+</ol>
+
+<h2>Get In Touch</h2>
+<p>Visit the Aspire2Analyse website or use the WhatsApp contact option to enquire about the program.</p>
+
+<div class="footer">Demo brochure generated for Aspire2Analyse. Replace this content with your final approved brochure before publishing.</div>
+</div>
+</body>
+</html>`;
+
+            const blob = new Blob([brochure], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Aspire2Analyse-Business-Analyst-Brochure.html';
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }
+
     </script>
 </body>
 </html>

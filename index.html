@@ -610,8 +610,17 @@ html {
     background: rgba(14,124,134,0.10);
     transition: transform 0.3s ease, background 0.3s ease;
 }
+.faq-icon {
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+}
+.faq-icon:hover {
+    background: rgba(14,124,134,0.18);
+}
 .faq-answer {
     display: grid;
+    visibility: hidden;
     grid-template-rows: 0fr;
     transition: grid-template-rows 0.35s ease;
 }
@@ -620,6 +629,7 @@ html {
 }
 .faq-item.active .faq-answer {
     grid-template-rows: 1fr;
+    visibility: visible;
 }
 .faq-item.active .faq-icon {
     transform: rotate(45deg);
@@ -700,6 +710,85 @@ html {
     -webkit-backdrop-filter: blur(12px);
 }
 
+/* =========================================================
+   HEADER ALIGNMENT — CLEAN NAV / ONLY ENQUIRE IS A BUTTON
+   ========================================================= */
+.glass-header .header-inner {
+    position: relative;
+    min-height: 82px;
+}
+.glass-header .desktop-nav {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    white-space: nowrap;
+}
+.glass-header .desktop-nav .glass-nav {
+    min-height: auto;
+    padding: 8px 2px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    color: #243447;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.glass-header .desktop-nav .glass-nav:hover {
+    transform: translateY(-1px);
+    background: transparent;
+    box-shadow: none;
+    color: #0e7c86;
+}
+.header-brochure-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 4px;
+    color: #243447;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.header-brochure-link:hover {
+    color: #0e7c86;
+    transform: translateY(-1px);
+}
+.glass-header .desktop-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.glass-header .glass-button-primary {
+    min-height: 46px;
+    padding: 11px 28px;
+    border-radius: 18px;
+}
+@media (max-width: 1279px) and (min-width: 768px) {
+    .glass-header .desktop-nav {
+        gap: 18px;
+    }
+    .glass-header .desktop-nav .glass-nav {
+        font-size: 13px;
+    }
+    .glass-header .desktop-actions {
+        gap: 12px;
+    }
+}
+@media (max-width: 767px) {
+    .glass-header .header-inner {
+        min-height: 76px;
+    }
+}
+
 /* Responsive */
 @media (max-width: 640px) {
     .glass-review-card {
@@ -739,29 +828,28 @@ html {
     <!-- HEADER / NAVIGATION -->
     <header class="glass-header">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-24">
-                <!-- NEW LOGO -->
-<a href="#" class="flex items-center py-2">
-    <img 
-        src="test2.png"
-        alt="Aspire2Analyse"
-        class="h-14 sm:h-16 w-auto object-contain"
-    >
-</a>
-                <!-- Desktop Navigation Links -->
-                <nav class="hidden md:flex items-center space-x-8">
-                    <a href="#overview" class="glass-nav text-sm font-semibold">Overview</a>
+            <div class="header-inner flex items-center justify-between px-0">
+                <!-- LOGO — clicking it returns to Overview -->
+                <a href="#overview" class="flex items-center py-2 relative z-10" aria-label="Go to Overview">
+                    <img
+                        src="test2.png"
+                        alt="Aspire2Analyse"
+                        class="h-14 sm:h-16 w-auto object-contain"
+                    >
+                </a>
+
+                <!-- CLEAN DESKTOP NAVIGATION — NO BOXES -->
+                <nav class="desktop-nav hidden md:flex" aria-label="Primary navigation">
                     <a href="#program" class="glass-nav text-sm font-semibold">Training Program</a>
                     <a href="#curriculum" class="glass-nav text-sm font-semibold">Curriculum</a>
                     <a href="#Mentor" class="glass-nav text-sm font-semibold">Mentor</a>
                     <a href="#testimonials" class="glass-nav text-sm font-semibold">Reviews</a>
                     <a href="#faq" class="glass-nav text-sm font-semibold">FAQs</a>
-                    <a href="#contact" class="glass-nav text-sm font-semibold">Contact</a>
                 </nav>
 
-                <!-- Action Button -->
-                <div class="hidden md:flex items-center gap-3">
-                    <button type="button" onclick="downloadBrochure()" class="glass-button text-navy-900 font-semibold glass-brochure-button">
+                <!-- ONLY ENQUIRE NOW KEEPS THE GLASS BUTTON -->
+                <div class="desktop-actions hidden md:flex relative z-10">
+                    <button type="button" onclick="downloadBrochure()" class="header-brochure-link" aria-label="Download brochure">
                         <i class="fa-solid fa-download"></i>
                         Brochure
                     </button>
@@ -771,7 +859,7 @@ html {
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
+                <div class="md:hidden flex items-center relative z-10">
                     <button id="mobile-menu-btn" type="button" class="text-slate-700 hover:text-navy-900 focus:outline-none p-2 rounded-md" aria-label="Toggle Menu">
                         <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
                     </button>
@@ -781,14 +869,12 @@ html {
 
         <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="glass-mobile-menu hidden md:hidden px-4 pt-3 pb-6 space-y-3">
-            <a href="#overview" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">Overview</a>
             <a href="#program" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">Training Program</a>
             <a href="#curriculum" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">Curriculum</a>
             <a href="#Mentor" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">Mentor</a>
             <a href="#testimonials" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">Reviews</a>
             <a href="#faq" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">FAQs</a>
-            <a href="#contact" class="mobile-nav-link glass-mobile-link block px-3 py-2 rounded-xl text-base font-medium text-slate-700">Contact</a>
-            <button type="button" onclick="downloadBrochure(); mobileMenu.classList.add('hidden');" class="glass-button text-navy-900 font-semibold w-full">
+            <button type="button" onclick="downloadBrochure(); mobileMenu.classList.add('hidden');" class="header-brochure-link w-full justify-center py-3">
                 <i class="fa-solid fa-download"></i> Download Brochure
             </button>
             <a href="#contact" class="mobile-nav-link glass-button glass-button-primary w-full text-center font-semibold">Enquire Now</a>
@@ -1357,10 +1443,10 @@ html {
             <div id="faq-container" class="space-y-3">
 
                 <div class="faq-item">
-                    <button type="button" class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question">
                         <span class="font-bold text-navy-900 text-sm sm:text-base">Who is this Business Analyst program for?</span>
-                        <span class="faq-icon"><i class="fa-solid fa-plus text-xs"></i></span>
-                    </button>
+                        <button type="button" class="faq-icon" onclick="toggleFaq(this)" aria-label="Show answer"><i class="fa-solid fa-plus text-xs"></i></button>
+                    </div>
                     <div class="faq-answer">
                         <div class="faq-answer-inner px-5 pb-5">
                             <p class="text-sm text-slate-600 leading-relaxed">
@@ -1371,10 +1457,10 @@ html {
                 </div>
 
                 <div class="faq-item">
-                    <button type="button" class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question">
                         <span class="font-bold text-navy-900 text-sm sm:text-base">How practical is the training?</span>
-                        <span class="faq-icon"><i class="fa-solid fa-plus text-xs"></i></span>
-                    </button>
+                        <button type="button" class="faq-icon" onclick="toggleFaq(this)" aria-label="Show answer"><i class="fa-solid fa-plus text-xs"></i></button>
+                    </div>
                     <div class="faq-answer">
                         <div class="faq-answer-inner px-5 pb-5">
                             <p class="text-sm text-slate-600 leading-relaxed">
@@ -1385,10 +1471,10 @@ html {
                 </div>
 
                 <div class="faq-item">
-                    <button type="button" class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question">
                         <span class="font-bold text-navy-900 text-sm sm:text-base">Will I create real Business Analyst artefacts?</span>
-                        <span class="faq-icon"><i class="fa-solid fa-plus text-xs"></i></span>
-                    </button>
+                        <button type="button" class="faq-icon" onclick="toggleFaq(this)" aria-label="Show answer"><i class="fa-solid fa-plus text-xs"></i></button>
+                    </div>
                     <div class="faq-answer">
                         <div class="faq-answer-inner px-5 pb-5">
                             <p class="text-sm text-slate-600 leading-relaxed">
@@ -1399,10 +1485,10 @@ html {
                 </div>
 
                 <div class="faq-item">
-                    <button type="button" class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question">
                         <span class="font-bold text-navy-900 text-sm sm:text-base">Which tools and technologies are covered?</span>
-                        <span class="faq-icon"><i class="fa-solid fa-plus text-xs"></i></span>
-                    </button>
+                        <button type="button" class="faq-icon" onclick="toggleFaq(this)" aria-label="Show answer"><i class="fa-solid fa-plus text-xs"></i></button>
+                    </div>
                     <div class="faq-answer">
                         <div class="faq-answer-inner px-5 pb-5">
                             <p class="text-sm text-slate-600 leading-relaxed">
@@ -1413,10 +1499,10 @@ html {
                 </div>
 
                 <div class="faq-item">
-                    <button type="button" class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question">
                         <span class="font-bold text-navy-900 text-sm sm:text-base">How long is the current program?</span>
-                        <span class="faq-icon"><i class="fa-solid fa-plus text-xs"></i></span>
-                    </button>
+                        <button type="button" class="faq-icon" onclick="toggleFaq(this)" aria-label="Show answer"><i class="fa-solid fa-plus text-xs"></i></button>
+                    </div>
                     <div class="faq-answer">
                         <div class="faq-answer-inner px-5 pb-5">
                             <p class="text-sm text-slate-600 leading-relaxed">
@@ -1427,10 +1513,10 @@ html {
                 </div>
 
                 <div class="faq-item">
-                    <button type="button" class="faq-question" onclick="toggleFaq(this)">
+                    <div class="faq-question">
                         <span class="font-bold text-navy-900 text-sm sm:text-base">Can I speak to someone before enrolling?</span>
-                        <span class="faq-icon"><i class="fa-solid fa-plus text-xs"></i></span>
-                    </button>
+                        <button type="button" class="faq-icon" onclick="toggleFaq(this)" aria-label="Show answer"><i class="fa-solid fa-plus text-xs"></i></button>
+                    </div>
                     <div class="faq-answer">
                         <div class="faq-answer-inner px-5 pb-5">
                             <p class="text-sm text-slate-600 leading-relaxed">
@@ -2093,7 +2179,7 @@ html {
             if (!wasActive) {
                 item.classList.add('active');
                 const icon = item.querySelector('.faq-icon i');
-                if (icon) icon.className = 'fa-solid fa-plus text-xs';
+                if (icon) icon.className = 'fa-solid fa-minus text-xs';
             }
         }
 
